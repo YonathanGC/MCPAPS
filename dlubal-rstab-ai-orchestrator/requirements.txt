@@ -1,0 +1,11 @@
+python-dotenv
+requests
+
+# Para rstab_client.py, si se usa la API COM en Windows:
+# pywin32
+
+# Otras posibles dependencias según la implementación:
+# pandas (para manejar datos CSV/Excel)
+# openpyxl (para leer/escribir archivos Excel)
+# reportlab (para generar PDFs directamente desde Python, si no se usa la función de RSTAB)
+# lxml (para procesar XML si la API de RSTAB lo usa)
