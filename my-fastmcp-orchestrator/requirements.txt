@@ -1,0 +1,70 @@
+# === Core Orchestrator Dependencies ===
+python-dotenv  # For loading environment variables from .env files
+requests       # For any synchronous HTTP requests (e.g., REST APIs if used by clients)
+websockets     # For asyncio-based WebSocket communication (used by fastmcp_client)
+
+# === AI Controller Dependencies ===
+# For Google Gemini API (or other generative AI models)
+google-generativeai # Official Python SDK for the Gemini API
+
+# Optional: For OAuth2 authentication with Google services, if implemented beyond API Key
+# google-auth
+# google-auth-oauthlib
+# google-auth-httplib2
+
+# === Application Specific SDKs/APIs ===
+# These are examples. Uncomment and install only those relevant to the applications you intend to control.
+# Note: Some of these libraries have system dependencies or are platform-specific (e.g., COM interop on Windows).
+# Always consult the official documentation for installation and usage.
+
+# --- Autodesk Applications ---
+
+# For AutoCAD / Civil 3D (COM-based automation on Windows)
+# pyautocad         # Community library for AutoCAD automation
+# comtypes          # Required by pyautocad for COM interaction on Windows
+# pythonnet         # For .NET interop, potentially useful for more direct Civil 3D API access
+
+# For Revit (Interaction is complex, often via pyRevit, Dynamo, or custom add-ins)
+# No direct 'pip install' for Revit API. Scripts typically run inside Revit's IronPython.
+# For type hinting in an external CPython IDE if developing scripts for Revit:
+# revit-api-stubs   # Community-provided stubs for Revit API (for type checking)
+
+# For Robot Structural Analysis (COM-based automation on Windows)
+# comtypes          # For COM interaction with Robot's API
+
+# For Dynamo (Scripts run inside Dynamo, often IronPython)
+# No direct 'pip install' for controlling Dynamo graphs externally via CPython in a simple way.
+# Interaction might be via DynamoCLI or custom solutions.
+
+# --- GIS Applications ---
+
+# For ArcGIS (Esri's official Python API)
+# arcgis            # ArcGIS API for Python - for ArcGIS Online, Enterprise, Pro
+
+# For QGIS (Interaction via PyQGIS, often within QGIS or a QGIS-aware environment)
+# No direct 'pip install qgis' for client-side control of a QGIS application.
+# PyQGIS is part of the QGIS installation. For standalone scripts, environment setup is key.
+# If using specific QGIS processing algorithms externally and a library wrapper exists:
+# qgis-processing   # (Hypothetical - check if such a targeted library exists and is suitable)
+# GDAL              # Often a dependency for geospatial work, usually bundled with QGIS.
+                    # Can be installed separately: pip install gdal
+
+# === General Notes ===
+# - To install all uncommented dependencies:
+#   pip install -r requirements.txt
+#
+# - For development, consider using a virtual environment:
+#   python -m venv venv
+#   source venv/bin/activate  # macOS/Linux
+#   .\venv\Scripts\activate   # Windows
+#
+# - Some libraries (especially for Autodesk products) may require the host application
+#   to be installed on the same machine where this orchestrator runs.
+#
+# - Always check the documentation for each library for specific version compatibility
+#   with your host applications (e.g., AutoCAD version, Revit version).
+#
+# - If you encounter issues installing geospatial libraries like GDAL, Fiona, Shapely, etc.,
+#   they often have binary dependencies. Using pre-compiled wheels from sources like
+#   Christoph Gohlke's Python Extension Packages for Windows (https://www.lfd.uci.edu/~gohlke/pythonlibs/)
+#   or package managers like Conda (conda install -c conda-forge gdal) can be helpful.
