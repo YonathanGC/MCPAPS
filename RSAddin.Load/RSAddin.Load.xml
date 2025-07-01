@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RobotAddIn>
+  <!--
+    Type:
+    "Application" - Add-in general que se carga con Robot.
+    "Structural" - Se integra más con las funciones de modelado. Puede añadir botones a la cinta.
+    "StandAlone" - Un ejecutable que Robot puede lanzar.
+    "SteelDesign", "ConcreteDesign", etc. - Para módulos de diseño específicos.
+
+    GUID: ¡DEBE COINCIDIR CON EL ATRIBUTO Guid EN AddinMain.cs!
+    Assembly: Nombre del DLL del Add-in.
+    Class: Nombre completo de la clase principal del Add-in (Namespace.ClassName).
+    LoadAtStartup: true para cargar cuando Robot inicia, false para carga manual (si aplica).
+  -->
+  <AddIn Name="JulesRSABeamAddin"
+         Guid="A1B2C3D4-E5F6-7890-1234-567890ABCDEF" <!-- ¡¡USAR EL MISMO GUID QUE EN AddinMain.cs!! -->
+         Assembly="RSAddin.Load.dll"
+         Class="RSAddin.Load.AddinMain"
+         Type="Application"
+         LoadAtStartup="true"
+         LanguageType="NET"
+         Description="Crea una viga simple, la analiza y muestra deflexión.">
+    <Vendor Name="Jules AI Assistant" Description="github.com/google/generative-ai-docs"/>
+
+    <!--
+      Si el Type fuera "Structural" o similar, podrías definir comandos aquí
+      para que aparezcan en la interfaz de Robot (ej. en la cinta de opciones).
+      Estos comandos llamarían a métodos públicos en tu clase AddinMain.
+    -->
+    <!--
+    <Commands>
+      <Command Name="ShowBeamTool" Caption="Crear Viga Simple" Tooltip="Abre la herramienta para crear una viga simple." LargeIcon="path_to_large_icon.png" SmallIcon="path_to_small_icon.png">
+        <ClassName>RSAddin.Load.AddinMain</ClassName>
+        <MethodName>ShowBeamCreatorWindow</MethodName>
+      </Command>
+    </Commands>
+    -->
+  </AddIn>
+</RobotAddIn>
