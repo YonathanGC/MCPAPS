@@ -4,6 +4,7 @@ import requests # For RESTful API calls
 import asyncio # For WebSocket communication (if needed)
 import websockets # For WebSocket communication
 from dotenv import load_dotenv
+from .dlubal_client import DlubalClient # Import DlubalClient
 
 class AppController:
     """
@@ -39,6 +40,18 @@ class AppController:
             print("Configured for WebSocket communication.")
         else:
             print("Configured for REST API communication.")
+
+        # Initialize Dlubal Client
+        try:
+            self.dlubal_client = DlubalClient()
+            print("DlubalClient integrated into AppController.")
+        except ValueError as e:
+            self.dlubal_client = None
+            print(f"Failed to initialize DlubalClient: {e}. Dlubal functionalities will be unavailable.")
+        except Exception as e:
+            self.dlubal_client = None
+            print(f"An unexpected error occurred initializing DlubalClient: {e}. Dlubal functionalities will be unavailable.")
+
 
     def get_connected_apps(self) -> list:
         """
@@ -208,6 +221,31 @@ class AppController:
         except json.JSONDecodeError:
             print("Error decoding JSON response from server.")
             return {"status": "error", "message": "Invalid JSON response"}
+
+    # --- Dlubal Specific Methods ---
+    def get_dlubal_rfem_model_info(self, model_name: str) -> dict:
+        """Wraps DlubalClient's get_rfem_model_info."""
+        if not self.dlubal_client:
+            return {"error": "DlubalClient not initialized."}
+        return self.dlubal_client.get_rfem_model_info(model_name)
+
+    def get_dlubal_rstab_model_info(self, model_name: str) -> dict:
+        """Wraps DlubalClient's get_rstab_model_info."""
+        if not self.dlubal_client:
+            return {"error": "DlubalClient not initialized."}
+        return self.dlubal_client.get_rstab_model_info(model_name)
+
+    def run_dlubal_rfem_analysis(self, model_name: str, analysis_type: str) -> dict:
+        """Wraps DlubalClient's run_rfem_analysis."""
+        if not self.dlubal_client:
+            return {"error": "DlubalClient not initialized."}
+        return self.dlubal_client.run_rfem_analysis(model_name, analysis_type)
+
+    def run_dlubal_rstab_analysis(self, model_name: str, analysis_type: str) -> dict:
+        """Wraps DlubalClient's run_rstab_analysis."""
+        if not self.dlubal_client:
+            return {"error": "DlubalClient not initialized."}
+        return self.dlubal_client.run_rstab_analysis(model_name, analysis_type)
 
 # --- Example Usage and Testing ---
 async def example_status_callback(status_data):

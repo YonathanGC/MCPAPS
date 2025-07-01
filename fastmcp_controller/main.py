@@ -21,6 +21,12 @@ async def show_menu():
     print("3. Send Command to Application (via Gemini)")
     print("4. Monitor Application Status (WebSocket - if configured)")
     print("5. Get Application Status (REST - if configured)")
+    print("--- Dlubal RFEM ---")
+    print("6. Get RFEM Model Info (mocked)")
+    print("7. Run RFEM Analysis (mocked)")
+    print("--- Dlubal RSTAB ---")
+    print("8. Get RSTAB Model Info (mocked)")
+    print("9. Run RSTAB Analysis (mocked)")
     print("0. Exit")
     return input("Choose an option: ")
 
@@ -166,6 +172,44 @@ async def handle_get_status_rest(controller: AppController):
     status = controller.get_app_status_rest(app_id) # Synchronous
     logging.info(f"App '{app_id}' Status: {status}")
 
+async def handle_get_rfem_model_info(controller: AppController):
+    """Handles getting RFEM model information."""
+    if not controller.dlubal_client:
+        logging.warning("DlubalClient is not available.")
+        return
+    model_name = input("Enter RFEM Model Name: ")
+    info = controller.get_dlubal_rfem_model_info(model_name)
+    logging.info(f"RFEM Model '{model_name}' Info: {info}")
+
+async def handle_run_rfem_analysis(controller: AppController):
+    """Handles running an RFEM analysis."""
+    if not controller.dlubal_client:
+        logging.warning("DlubalClient is not available.")
+        return
+    model_name = input("Enter RFEM Model Name: ")
+    analysis_type = input("Enter RFEM Analysis Type (e.g., Static, Modal): ")
+    result = controller.run_dlubal_rfem_analysis(model_name, analysis_type)
+    logging.info(f"RFEM Analysis Result for '{model_name}' ({analysis_type}): {result}")
+
+async def handle_get_rstab_model_info(controller: AppController):
+    """Handles getting RSTAB model information."""
+    if not controller.dlubal_client:
+        logging.warning("DlubalClient is not available.")
+        return
+    model_name = input("Enter RSTAB Model Name: ")
+    info = controller.get_dlubal_rstab_model_info(model_name)
+    logging.info(f"RSTAB Model '{model_name}' Info: {info}")
+
+async def handle_run_rstab_analysis(controller: AppController):
+    """Handles running an RSTAB analysis."""
+    if not controller.dlubal_client:
+        logging.warning("DlubalClient is not available.")
+        return
+    model_name = input("Enter RSTAB Model Name: ")
+    analysis_type = input("Enter RSTAB Analysis Type (e.g., LC1, CO1): ")
+    result = controller.run_dlubal_rstab_analysis(model_name, analysis_type)
+    logging.info(f"RSTAB Analysis Result for '{model_name}' ({analysis_type}): {result}")
+
 
 async def main():
     """Main function to run the FastMCP Controller."""
@@ -203,6 +247,14 @@ async def main():
                 await handle_monitor_status_ws(app_controller)
             elif choice == '5':
                 await handle_get_status_rest(app_controller)
+            elif choice == '6':
+                await handle_get_rfem_model_info(app_controller)
+            elif choice == '7':
+                await handle_run_rfem_analysis(app_controller)
+            elif choice == '8':
+                await handle_get_rstab_model_info(app_controller)
+            elif choice == '9':
+                await handle_run_rstab_analysis(app_controller)
             elif choice == '0':
                 logging.info("Exiting FastMCP Controller.")
                 break
