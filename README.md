@@ -1,8 +1,8 @@
-# FastMCP Controller with Gemini Integration
+# Dlubal API Controller with Claude Integration
 
 ## 🚀 Project Overview
 
-This script provides a base for connecting to a FastMCP server and leveraging the Google Gemini API to automate actions on connected applications. It allows sending commands, reading real-time status, and managing application modules.
+This script provides a controller for Dlubal RFEM/RSTAB applications using the Dlubal gRPC API. It leverages the Anthropic Claude API to translate natural language instructions into Dlubal API commands, enabling automation of structural modeling and analysis tasks.
 
 The project is structured to be compatible with GitHub Copilot and code suggestion tools like Roo Code.
 
@@ -10,15 +10,18 @@ The project is structured to be compatible with GitHub Copilot and code suggesti
 
 - Python 3.7+
 - pip (Python package installer)
-- A Google Gemini API Key
-- Access to a FastMCP server (with its URL and any necessary authentication tokens)
+- An Anthropic Claude API Key.
+- Dlubal RFEM 6 or RSTAB 9 (or newer) installed and running.
+- The Dlubal Web Service (gRPC server) must be enabled in RFEM/RSTAB (typically in Program Options -> Web Services, running on port 8081).
+- The Dlubal Python API client library (`dlubal.api`) installed (see `requirements.txt`).
 
-## 🔑 How to Generate Your Gemini API Key
+## 🔑 How to Generate Your Anthropic Claude API Key
 
-1.  Go to [Google AI Studio](https://aistudio.google.com/app/apikey) (or the relevant Google Cloud Console page for Gemini API).
-2.  Sign in with your Google account.
-3.  Create a new API key.
-4.  **Important**: Copy this key and keep it secure. You will need it for the `.env` file.
+1.  Go to the [Anthropic Console](https://console.anthropic.com/).
+2.  Sign in or create an account.
+3.  Navigate to the API Keys section.
+4.  Create a new API key.
+5.  **Important**: Copy this key and keep it secure. You will need it for the `.env` file.
 
 ## 🛠️ Setup Instructions
 
@@ -59,26 +62,26 @@ The project is structured to be compatible with GitHub Copilot and code suggesti
         ```
     -   Open the `.env` file and fill in your details:
         ```env
-        GEMINI_API_KEY="YOUR_GEMINI_API_KEY_HERE"
-        FASTMCP_SERVER_URL="YOUR_FASTMCP_SERVER_URL_HERE" # e.g., ws://localhost:8080 or http://localhost:8080/api
-        FASTMCP_AUTH_TOKEN="YOUR_FASTMCP_AUTH_TOKEN_HERE" # Optional, if your server requires it
+        CLAUDE_API_KEY="YOUR_CLAUDE_API_KEY_HERE"
+        # DLUBAL_SERVER_ADDRESS="localhost:8081" # Optional: Override default Dlubal gRPC server address
         ```
+    Ensure your Dlubal RFEM/RSTAB application is running and the Web Service (gRPC) is enabled (usually on port 8081).
 
 ## ▶️ How to Run the Script
 
-1.  Ensure your virtual environment is activated and your `.env` file is correctly configured.
+1.  Ensure your virtual environment is activated, your `.env` file is correctly configured with `CLAUDE_API_KEY`, and Dlubal RFEM/RSTAB is running with Web Services enabled.
 2.  Navigate to the `fastmcp_controller` directory if you are not already there.
 3.  Run the main script:
     ```bash
     python main.py
     ```
-4.  Follow the on-screen prompts or interact with the application as designed.
+4.  Follow the on-screen prompts to interact with your Dlubal application using natural language.
 
 ## ⚙️ Project Structure
 
--   `main.py`: Main script to initialize connections and orchestrate operations.
--   `gemini_client.py`: Module for interacting with the Google Gemini API.
--   `app_controller.py`: Module for managing and interacting with applications via FastMCP.
+-   `main.py`: Main script to initialize connections and orchestrate Dlubal operations via Claude.
+-   `claude_client.py`: Module for interacting with the Anthropic Claude API.
+-   `dlubal_controller.py`: Module for managing and interacting with Dlubal RFEM/RSTAB via its gRPC API.
 -   `requirements.txt`: Lists Python dependencies.
 -   `.env.example`: Template for environment variables.
 -   `README.md`: This file.
@@ -88,8 +91,8 @@ The project is structured to be compatible with GitHub Copilot and code suggesti
 This project is designed with GitHub Copilot and Roo Code compatibility in mind, featuring:
 - Clear, commented code.
 - Modular structure.
-- Type hinting (to be added progressively).
+- Type hinting (progressively added).
 
 ---
 
-*This is a base script. You will need to implement the specific API calls and logic for your FastMCP server.*
+*This script provides a foundation. The `DlubalController` methods currently contain placeholder logic for actual Dlubal gRPC API calls. These need to be filled in based on the `dlubal.api` library documentation to achieve full functionality.*

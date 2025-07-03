@@ -1,4 +1,6 @@
 requests
 websockets
-google-generativeai
+# google-generativeai # Will be replaced by anthropic
 python-dotenv
+anthropic
+dlubal.api # Official Dlubal gRPC API client
