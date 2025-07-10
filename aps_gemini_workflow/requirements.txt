@@ -1,0 +1,29 @@
+# General HTTP requests and utilities
+requests
+python-dotenv
+
+# For fastmcp_controller (original components)
+websockets
+google-generativeai
+
+# For APS (Autodesk Platform Services) interaction
+# As per user's description, though the current skeleton autodesk_api_client.py doesn't fully utilize it.
+aps-python-sdk
+
+# For MCP Server (rsa_gemini_mcp_server.py)
+fastapi
+uvicorn[standard]
+# pydantic is a core dependency of FastAPI, usually installed with it.
+
+# For MCP Client (as per user's description for workflow_orchestrator.py)
+# The current workflow_orchestrator.py uses a minimal requests-based client as a placeholder.
+# If using the actual "gemini-mcp-client" library, it would be listed here.
+# Add "gemini-mcp-client" if you have this specific package. For now, commenting out:
+# gemini-mcp-client
+
+# Note:
+# - Ensure you have a compatible Python version (e.g., Python 3.8+ as per user's prompt).
+# - Some of these libraries might have their own specific version requirements.
+#   Consider pinning versions (e.g., requests==2.28.1) for more reproducible environments
+#   once you have a stable setup.
+# - To install all: pip install -r requirements.txt
