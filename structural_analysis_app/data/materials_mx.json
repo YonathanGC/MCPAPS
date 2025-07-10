@@ -1,0 +1,40 @@
+[
+  {
+    "id": "CONC_NTC_250",
+    "type": "concreto",
+    "properties": {
+      "fc_mpa": 24.5,
+      "E_mpa": 22135,
+      "unit_weight_kn_m3": 23.5
+    }
+  },
+  {
+    "id": "CONC_NTC_300",
+    "type": "concreto",
+    "properties": {
+      "fc_mpa": 29.4,
+      "E_mpa": 24230,
+      "unit_weight_kn_m3": 23.5
+    }
+  },
+  {
+    "id": "ACERO_A36",
+    "type": "acero",
+    "properties": {
+      "fy_mpa": 250,
+      "fu_mpa": 400,
+      "E_mpa": 200000,
+      "unit_weight_kn_m3": 77.0
+    }
+  },
+  {
+    "id": "ACERO_A572_GR50",
+    "type": "acero",
+    "properties": {
+      "fy_mpa": 345,
+      "fu_mpa": 450,
+      "E_mpa": 200000,
+      "unit_weight_kn_m3": 77.0
+    }
+  }
+]

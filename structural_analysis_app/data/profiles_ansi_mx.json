@@ -1,0 +1,38 @@
+[
+  {
+    "id": "IR254x32.8",
+    "type": "IPR",
+    "properties": {
+      "A_cm2": 41.8,
+      "d_mm": 254,
+      "bf_mm": 146,
+      "tf_mm": 9.1,
+      "tw_mm": 6.1,
+      "Ix_cm4": 4870,
+      "Iy_cm4": 491,
+      "Zx_cm3": 383,
+      "Zy_cm3": 67.3,
+      "rx_cm": 10.8,
+      "ry_cm": 3.43,
+      "peso_kg_m": 32.8
+    }
+  },
+  {
+    "id": "CE152x12.8",
+    "type": "CE",
+    "properties": {
+      "A_cm2": 16.3,
+      "d_mm": 152,
+      "bf_mm": 58,
+      "tf_mm": 8.7,
+      "tw_mm": 5.1,
+      "Ix_cm4": 608,
+      "Iy_cm4": 42.9,
+      "Zx_cm3": 79.8,
+      "Zy_cm3": 9.9,
+      "rx_cm": 6.1,
+      "ry_cm": 1.62,
+      "peso_kg_m": 12.8
+    }
+  }
+]

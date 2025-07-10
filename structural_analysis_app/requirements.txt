@@ -1,0 +1,9 @@
+openseespy
+pandas
+numpy
+google-generativeai
+pyvista
+matplotlib
+reportlab
+ezdxf # Descomentar cuando lleguemos a la exportación DXF
+# ifcopenshell # Descomentar cuando lleguemos a la exportación IFC
