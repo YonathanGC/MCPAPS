@@ -28,6 +28,13 @@ def get_material_library():
                 "E": 24e9,
                 "poisson": 0.2
             }
+        },
+        "column_material": {
+            "concrete": {
+                "fpc": 25e6,
+                "E": 22e9,
+                "poisson": 0.2
+            }
         }
     }
     return material_library

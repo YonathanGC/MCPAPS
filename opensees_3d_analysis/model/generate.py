@@ -26,6 +26,9 @@ def generate_model():
         elif material["type"] == "concrete":
             mat_data = material_library["concrete"][material["name"]]
             ops.uniaxialMaterial("Elastic", material["id"], mat_data["E"])
+        elif material["type"] == "column_material":
+            mat_data = material_library["column_material"][material["name"]]
+            ops.uniaxialMaterial("Elastic", material["id"], mat_data["E"])
 
 
     # Add geometric transformation
@@ -43,8 +46,11 @@ def generate_model():
                     ops.element("elasticBeamColumn", element["id"], *element["nodes"],
                                 material_input["A"], mat_data["E"], G, material_input["J"],
                                 material_input["Iy"], material_input["Iz"], 1)
-                elif material_input["type"] == "concrete":
-                    mat_data = material_library["concrete"][material_input["name"]]
+                elif material_input["type"] == "concrete" or material_input["type"] == "column_material":
+                    if material_input["type"] == "concrete":
+                        mat_data = material_library["concrete"][material_input["name"]]
+                    else:
+                        mat_data = material_library["column_material"][material_input["name"]]
                     G = mat_data["E"] / (2 * (1 + mat_data["poisson"]))
                     ops.element("elasticBeamColumn", element["id"], *element["nodes"],
                                 material_input["A"], mat_data["E"], G, material_input["J"],

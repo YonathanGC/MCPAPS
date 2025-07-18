@@ -23,6 +23,10 @@
 <body>
     <h1>OpenSees 3D Analysis</h1>
     <div id="plot"></div>
+    <h2>Diagrams</h2>
+    <div id="axial_diagram"></div>
+    <div id="shear_diagram"></div>
+    <div id="moment_diagram"></div>
     <h2>Nodal Displacements</h2>
     <div id="nodal_results">
         <table>
@@ -57,6 +61,15 @@
     <script>
         var plot_json = {{ plot_json|safe }};
         Plotly.newPlot('plot', plot_json.data, plot_json.layout);
+
+        var axial_json = {{ axial_json|safe }};
+        Plotly.newPlot('axial_diagram', axial_json.data, axial_json.layout);
+
+        var shear_json = {{ shear_json|safe }};
+        Plotly.newPlot('shear_diagram', shear_json.data, shear_json.layout);
+
+        var moment_json = {{ moment_json|safe }};
+        Plotly.newPlot('moment_diagram', moment_json.data, moment_json.layout);
     </script>
 </body>
 </html>

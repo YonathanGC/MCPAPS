@@ -22,14 +22,14 @@ This is a Python application that uses OpenSees to perform structural analysis o
     pip install -r requirements.txt
     ```
 2.  **Define the structure:**
-    Modify the `input/data.py` file to define the nodes, materials, elements, loads, and supports of your structure. You can use the material library in `materials/library.py` to select common materials. The current example is an arch truss structure.
+    Modify the `input/data.py` file to define the nodes, materials, elements, loads, and supports of your structure. You can use the material library in `materials/library.py` to select common materials. The current example is an arch truss structure with concrete columns.
 3.  **Run the web application:**
     ```
     python main.py
     ```
 4.  **View the results:**
-    Open your web browser and go to `http://127.0.0.1:5000/`. You will see an interactive 3D plot of the structure and tables with the nodal displacements and element forces.
+    Open your web browser and go to `http://127.0.0.1:5000/`. You will see an interactive 3D plot of the structure and tables with the nodal displacements and element forces. You will also see diagrams for the axial force, shear force, and moment for the upper chord of the first truss.
 
 ## Example
 
-The current example is an arch truss structure defined parametrically in `input/data.py`. You can modify this file to analyze your own structures.
+The current example is an arch truss structure with concrete columns, defined parametrically in `input/data.py`. You can modify this file to analyze your own structures.
