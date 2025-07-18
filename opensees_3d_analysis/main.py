@@ -19,7 +19,11 @@ def main():
     print("Frequencies (Hz):", frequencies)
 
     print("\nPlotting the model...")
-    plot_model()
+    plot_model(show_deformed=True, scale_factor=100)
+
+    print("\nPlotting diagrams...")
+    from visualization.plot import plot_diagrams
+    plot_diagrams()
 
 
 if __name__ == "__main__":

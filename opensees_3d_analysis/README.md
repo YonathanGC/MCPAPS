@@ -10,7 +10,7 @@ This is a Python application that uses OpenSees to perform structural analysis o
 - `model/generate.py`: Generates the OpenSees model from the input data.
 - `analysis/run.py`: Runs the structural analysis.
 - `results/extract.py`: Extracts and prints the results.
-- `visualization/plot.py`: Generates a 3D plot of the structure.
+- `visualization/plot.py`: Generates a 3D plot of the structure and diagrams.
 - `requirements.txt`: The required Python packages.
 
 ## How to use
@@ -26,7 +26,10 @@ This is a Python application that uses OpenSees to perform structural analysis o
     python3 main.py
     ```
 4.  **View the results:**
-    The results will be printed to the console, and a 3D plot of the model will be saved as `model.png`.
+    The results will be printed to the console. The following image files will be generated in the project directory:
+    - `model.png`: A 3D plot of the structure, including the deformed shape and color-coded elements based on axial force.
+    - `shear_diagram.png`: A shear force diagram for the upper chord of the first truss.
+    - `moment_diagram.png`: A moment diagram for the upper chord of the first truss.
 
 ## Example
 
