@@ -3,27 +3,27 @@ from input.data import get_arch_truss_data
 
 def extract_nodal_results():
     """
-    Extracts and prints the nodal results from the OpenSees analysis.
+    Extracts and returns the nodal results from the OpenSees analysis.
     """
     input_data = get_arch_truss_data()
-
-    print("Displacements:")
+    results = {}
     for node in input_data["nodes"]:
         node_id = node["id"]
         displacement = ops.nodeDisp(node_id)
-        print(f"Node {node_id}: {displacement}")
+        results[node_id] = displacement
+    return results
 
 def extract_element_results():
     """
-    Extracts and prints the element results from the OpenSees analysis.
+    Extracts and returns the element results from the OpenSees analysis.
     """
     input_data = get_arch_truss_data()
-
-    print("\nElement Forces:")
+    results = {}
     for element in input_data["elements"]:
         element_id = element["id"]
         forces = ops.eleForce(element_id)
-        print(f"Element {element_id}: {forces}")
+        results[element_id] = forces
+    return results
 
 def calculate_drifts():
     """

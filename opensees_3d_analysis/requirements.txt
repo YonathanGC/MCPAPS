@@ -1,3 +1,5 @@
 openseespy
 numpy
 matplotlib
+Flask
+plotly

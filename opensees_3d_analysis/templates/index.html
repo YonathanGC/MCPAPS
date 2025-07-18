@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenSees 3D Analysis</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>OpenSees 3D Analysis</h1>
+    <div id="plot"></div>
+    <h2>Nodal Displacements</h2>
+    <div id="nodal_results">
+        <table>
+            <tr>
+                <th>Node ID</th>
+                <th>Displacement</th>
+            </tr>
+            {% for node_id, displacement in nodal_results.items() %}
+            <tr>
+                <td>{{ node_id }}</td>
+                <td>{{ displacement }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <h2>Element Forces</h2>
+    <div id="element_results">
+        <table>
+            <tr>
+                <th>Element ID</th>
+                <th>Forces</th>
+            </tr>
+            {% for element_id, forces in element_results.items() %}
+            <tr>
+                <td>{{ element_id }}</td>
+                <td>{{ forces }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <script>
+        var plot_json = {{ plot_json|safe }};
+        Plotly.newPlot('plot', plot_json.data, plot_json.layout);
+    </script>
+</body>
+</html>
