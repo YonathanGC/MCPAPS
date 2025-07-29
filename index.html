@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Arcotecho Parabólico - Escuela El Rosario Capula</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">12</span>
+        </div>
+
+        <!-- Slide 1: Portada -->
+        <div id="slide1" class="slide active">
+            <header class="slide-header">
+                <h1 class="slide-title">PROYECTO ARCOTECHO PARABÓLICO</h1>
+                <p class="slide-subtitle">Escuela Primaria El Rosario Capula, Ixmiquilpan, Hidalgo</p>
+            </header>
+            <main class="slide-content">
+                <section class="project-info">
+                    <h2 class="section-title">📋 INFORMACIÓN GENERAL DEL PROYECTO</h2>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>🏫 Datos del Cliente</h3>
+                            <div class="info-item"><span>Cliente:</span><span class="info-value">SEP Hidalgo</span></div>
+                            <div class="info-item"><span>Ubicación:</span><span class="info-value">Ixmiquilpan, Hidalgo</span></div>
+                            <div class="info-item"><span>Altitud:</span><span class="info-value">1,880 msnm</span></div>
+                            <div class="info-item"><span>Fecha de entrega:</span><span class="info-value">Junio 2025</span></div>
+                        </div>
+                        <div class="info-card">
+                            <h3>📐 Dimensiones del Proyecto</h3>
+                            <div class="info-item"><span>Claro libre:</span><span class="info-value">16.50 m</span></div>
+                            <div class="info-item"><span>Longitud total:</span><span class="info-value">27.40 m</span></div>
+                            <div class="info-item"><span>Área total:</span><span class="info-value">452.10 m²</span></div>
+                            <div class="info-item"><span>Número de marcos:</span><span class="info-value">6 marcos @ 5.50 m</span></div>
+                        </div>
+                        <div class="info-card">
+                            <h3>🏗️ Sistema Estructural</h3>
+                            <div class="info-item"><span>Tipo:</span><span class="info-value">Armadura parabólica</span></div>
+                            <div class="info-item"><span>Flecha:</span><span class="info-value">1.80 m</span></div>
+                            <div class="info-item"><span>Altura de armadura:</span><span class="info-value">0.45 m</span></div>
+                            <div class="info-item"><span>Tensores ⅜":</span><span class="info-value">15 unidades</span></div>
+                        </div>
+                        <div class="info-card">
+                            <h3>📋 Normatividad</h3>
+                            <ul class="norm-list">
+                                <li>✓ CFE - Manual de Diseño</li>
+                                <li>✓ NTC-RCDF</li>
+                                <li>✓ AISC Steel Construction</li>
+                                <li>✓ AWS D1.1 Soldadura</li>
+                                <li>✓ Reglamento Hidalgo</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section class="canvas-container">
+                    <canvas id="structuralCanvas"></canvas>
+                </section>
+            </main>
+        </div>
+
+        <!-- Slide 2: Análisis Estructural -->
+        <div id="slide2" class="slide">
+            <header class="slide-header">
+                <h2 class="slide-title">ANÁLISIS ESTRUCTURAL</h2>
+                <p class="slide-subtitle">Cargas y Combinaciones según CFE/NTC-RCDF</p>
+            </header>
+            <main class="slide-content">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>⚡ Cargas de Diseño</h3>
+                        <div class="info-item"><span>Peso armadura:</span><span class="info-value">164 N/m</span></div>
+                        <div class="info-item"><span>Montenes PTR 4"×2":</span><span class="info-value">280 N/m</span></div>
+                        <div class="info-item"><span>Lámina R-101 Zintro:</span><span class="info-value">45 N/m²</span></div>
+                        <div class="info-item"><span>Carga viva mantenimiento:</span><span class="info-value">200 N/m²</span></div>
+                        <div class="info-item"><span>Viento Hidalgo (120 km/h):</span><span class="info-value">1,080 N/m²</span></div>
+                        <div class="info-item"><span>Lluvia (80 mm/hr):</span><span class="info-value">78 N/m²</span></div>
+                    </div>
+                    <div class="info-card">
+                        <h3>🔧 Propiedades Materiales</h3>
+                        <div class="info-item"><span>Acero A-36:</span><span class="info-value">Fy = 250 MPa</span></div>
+                        <div class="info-item"><span>Módulo elástico:</span><span class="info-value">E = 200 GPa</span></div>
+                        <div class="info-item"><span>Concreto f'c:</span><span class="info-value">25 MPa</span></div>
+                        <div class="info-item"><span>Área cordones (4 ángulos):</span><span class="info-value">38.4 cm²</span></div>
+                        <div class="info-item"><span>Momento inercia armadura:</span><span class="info-value">485 cm⁴</span></div>
+                    </div>
+                </div>
+
+                <section class="formula">
+                    <h4 class="formula-title">Combinaciones de Carga CFE/NTC:</h4>
+                    <ul>
+                        <li><strong>Servicio:</strong> CM + CV + 0.4W + Lluvia</li>
+                        <li><strong>Resistencia:</strong> 1.2CM + 1.6CV + 0.8W</li>
+                        <li><strong>Viento crítico:</strong> 1.2CM + 1.4W (Hidalgo)</li>
+                        <li><strong>Sismo + Viento:</strong> CM + 0.3CV + S + 0.3W (Zona B)</li>
+                    </ul>
+                </section>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>📊 Resultados del Análisis</h3>
+                        <div class="info-item"><span>Desplazamiento máximo:</span><span class="info-value">28.5 mm &lt; L/300</span></div>
+                        <div class="info-item"><span>Esfuerzo máximo:</span><span class="info-value">156 MPa &lt; 0.6Fy</span></div>
+                        <div class="info-item"><span>Factor de seguridad:</span><span class="info-value">1.60 &gt; 1.5 ✓</span></div>
+                        <div class="info-item"><span>Reacción horizontal:</span><span class="info-value">18.2 kN</span></div>
+                        <div class="info-item"><span>Reacción vertical:</span><span class="info-value">42.8 kN</span></div>
+                    </div>
+                    <div class="info-card">
+                        <h3>✅ Verificaciones</h3>
+                        <div class="success">
+                            <p><strong>Deflexión:</strong> L/580 &lt; L/300 ✓</p>
+                            <p><strong>Esfuerzo:</strong> 0.62Fy &lt; 0.66Fy ✓</p>
+                            <p><strong>Pandeo:</strong> λ &lt; λr ✓</p>
+                            <p><strong>Vibración:</strong> f &gt; 3 Hz ✓</p>
+                        </div>
+                        <div class="warning">
+                            <p><strong>Consideraciones especiales:</strong></p>
+                            <ul>
+                                <li>Altitud 1,880 msnm reduce presión viento</li>
+                                <li>Suelo arcilloso requiere zapatas 1×1×0.30m</li>
+                                <li>Temperatura -2°C a +35°C</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Slide 3: Sistema de Contraventeo -->
+        <div id="slide3" class="slide">
+            <header class="slide-header">
+                <h2 class="slide-title">SISTEMA DE CONTRAVENTEO</h2>
+                <p class="slide-subtitle">15 Tensores de ⅜" para Estabilidad Lateral</p>
+            </header>
+            <main class="slide-content">
+                <section class="wind-bracing">
+                    <h3 class="section-title">🔗 Configuración de Tensores</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>📐 Distribución</h3>
+                            <div class="info-item"><span>Total de tensores:</span><span class="info-value">15 unidades</span></div>
+                            <div class="info-item"><span>Diámetro:</span><span class="info-value">⅜" (9.5 mm)</span></div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- Slide 4: Materials & Costs -->
+        <div id="slide4" class="slide">
+            <header class="slide-header">
+                <h2 class="slide-title">MATERIALES Y COSTOS</h2>
+                <p class="slide-subtitle">Visualización de Datos del Proyecto</p>
+            </header>
+            <main class="slide-content">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Cantidades de Material</h3>
+                        <canvas id="materialsChart"></canvas>
+                    </div>
+                    <div class="info-card">
+                        <h3>Distribución de Costos</h3>
+                        <canvas id="costChart"></canvas>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button id="prevBtn" class="nav-btn">Anterior</button>
+        <button id="nextBtn" class="nav-btn">Siguiente</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/3d-viewer.js"></script>
+    <script src="js/charts.js"></script>
+</body>
+</html>
